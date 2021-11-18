@@ -1,13 +1,12 @@
-package com.plcoding.currencyconverter
+package com.plcoding.currencyconverter.ui
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.plcoding.currencyconverter.databinding.ActivityMainBinding
-import com.plcoding.currencyconverter.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -27,13 +26,13 @@ class MainActivity : AppCompatActivity() {
             viewModel.convert(
                 binding.etFrom.text.toString(),
                 binding.spFromCurrency.selectedItem.toString(),
-                binding.spToCurrency.selectedItem.toString(),
+                binding.spToCurrency.selectedItem.toString()
             )
         }
 
         lifecycleScope.launchWhenStarted {
             viewModel.conversion.collect { event ->
-                when(event) {
+                when (event) {
                     is MainViewModel.CurrencyEvent.Success -> {
                         binding.progressBar.isVisible = false
                         binding.tvResult.setTextColor(Color.BLACK)
