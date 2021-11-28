@@ -1,5 +1,6 @@
 package com.plcoding.currencyconverter.data
 
+import com.plcoding.currencyconverter.BuildConfig
 import com.plcoding.currencyconverter.data.models.CurrencyResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -9,6 +10,6 @@ interface CurrencyApi {
 
     @GET("/latest")
     suspend fun getRates(
-        @Query("base") base: String
+        @Query("access_key") apiKey: String = BuildConfig.API_KEY
     ): Response<CurrencyResponse>
 }

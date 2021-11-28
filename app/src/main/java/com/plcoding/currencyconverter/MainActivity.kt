@@ -27,13 +27,13 @@ class MainActivity : AppCompatActivity() {
             viewModel.convert(
                 binding.etFrom.text.toString(),
                 binding.spFromCurrency.selectedItem.toString(),
-                binding.spToCurrency.selectedItem.toString(),
+                binding.spToCurrency.selectedItem.toString()
             )
         }
 
         lifecycleScope.launchWhenStarted {
             viewModel.conversion.collect { event ->
-                when(event) {
+                when (event) {
                     is MainViewModel.CurrencyEvent.Success -> {
                         binding.progressBar.isVisible = false
                         binding.tvResult.setTextColor(Color.BLACK)
